@@ -1,36 +1,62 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Feiraê 🧺
 
-## Getting Started
+Web app para descobrir **feiras livres**, produtos e **feirantes** perto de você — salvar as favoritas em pastas e traçar a rota até elas. Projeto desenvolvido como **TCC**.
 
-First, run the development server:
+> Construído a partir do **Diagrama de Fluxo de Telas** no Figma: `KLCcIvOqX879ngawOWFPw7`. O Figma define a arquitetura/navegação e a marca (logo de lupa, tipografia Fredoka, verde `#01791A`); as telas foram desenhadas seguindo esse fluxo.
+
+## Stack
+
+- **Next.js 16** (App Router) + **React 19**
+- **TypeScript**
+- **Tailwind CSS v4** (tokens de marca em `src/app/globals.css`)
+- **lucide-react** (ícones)
+- Estado local com React Context + `localStorage` (sem backend)
+
+## Rodando
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev     # http://localhost:3000
+npm run build   # build de produção
+npm start       # servir o build
+npm run lint
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Telas / rotas
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+| Rota | Tela |
+|------|------|
+| `/entrar` | Onboarding / entrada |
+| `/` | **Início** — localização, busca, feiras abertas agora, eventos, perto de você |
+| `/descobrir` | **Descobrir** — abas Feiras · Eventos · Feirantes |
+| `/buscar` | **Buscar** — filtros por categoria e dia da semana, lista/mapa |
+| `/feira/[id]` | **Detalhes da feira** — info, comércios, salvar, rota, link prefeitura |
+| `/salvos` | **Salvos** — pastas personalizadas, mover, remover, compartilhar |
+| `/perfil` | **Perfil** — avatar/nome, localização, ajuda, sair |
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Estrutura
 
-## Learn More
+```
+src/
+├─ app/
+│  ├─ (tabs)/         # rotas com barra de navegação inferior (Início, Descobrir, Salvos, Perfil)
+│  ├─ buscar/         # busca em tela cheia
+│  ├─ feira/[id]/     # detalhes da feira (gera páginas estáticas)
+│  ├─ entrar/         # onboarding
+│  ├─ layout.tsx      # fonte Fredoka + AppProvider
+│  └─ globals.css     # design system (cores, raios, sombras)
+├─ components/        # Logo, BottomNav, FairCard, MiniMap, SearchTrigger, sheets, etc.
+└─ lib/
+   ├─ data.ts         # dados mockados (feiras, feirantes, categorias, eventos)
+   ├─ store.tsx       # estado global (salvos/pastas/perfil) + localStorage
+   ├─ types.ts
+   └─ cn.ts
+```
 
-To learn more about Next.js, take a look at the following resources:
+## Observações do Next.js 16
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Este projeto usa **Cache Components** (ligado por padrão nesta versão). Valores que dependem da hora atual (`new Date()`) ou de `searchParams` são resolvidos **no cliente** para manter as rotas estáticas — ver `OpenNowBadge.tsx`, `AbertasAgoraCarousel.tsx` e `BuscaView.tsx`.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Dados
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Todos os dados são **mockados** em `src/lib/data.ts` (feiras de São Paulo como exemplo). O mapa é um SVG estilizado próprio, sem dependência de API externa — pode ser trocado por Leaflet/Mapbox futuramente.

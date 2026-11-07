@@ -1,26 +1,100 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* ===== Feiraê — Design System (fiel ao Figma) =====
+   Verde #01791A, Vermelho #E00000, Laranja #EF7D1A (quase encerrando).
+   Cabeçalhos com gradiente vermelho/laranja → verde + textura pontilhada.
+   Tipografia Fredoka. Cidade: Curitiba. */
+
+@theme {
+  --color-brand: #01791a;
+  --color-brand-dark: #015c14;
+  --color-brand-mid: #2e9a45;
+  --color-brand-soft: #e7f3ea;
+  --color-brand-tint: #f1f8f2;
+
+  --color-accent: #e00000;
+  --color-accent-soft: #fde7e7;
+
+  --color-orange: #ef7d1a;
+  --color-orange-soft: #fdeedd;
+
+  --color-ink: #1a1a1a;
+  --color-muted: #6b6b6b;
+  --color-faint: #9b9b9b;
+  --color-line: #ececec;
+  --color-surface: #ffffff;
+  --color-canvas: #f3f1ee;
+
+  --font-sans: var(--font-fredoka), ui-sans-serif, system-ui, -apple-system,
+    sans-serif;
+
+  --radius-card: 1.5rem;
+  --radius-pill: 999px;
+
+  --shadow-card: 0 1px 2px rgba(16, 24, 16, 0.04),
+    0 10px 30px -14px rgba(16, 24, 16, 0.22);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+* {
+  -webkit-tap-highlight-color: transparent;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-canvas);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Gradientes dos cabeçalhos (com textura pontilhada) */
+.grad-brand {
+  background-image:
+    radial-gradient(rgba(255, 255, 255, 0.16) 1.1px, transparent 1.2px),
+    linear-gradient(112deg, #e00000 0%, #b5430a 46%, #0a7a16 100%);
+  background-size:
+    15px 15px,
+    100% 100%;
+}
+.grad-descobrir {
+  background-image:
+    radial-gradient(rgba(255, 255, 255, 0.16) 1.1px, transparent 1.2px),
+    linear-gradient(112deg, #e4571a 0%, #b4541c 42%, #0a7a16 100%);
+  background-size:
+    15px 15px,
+    100% 100%;
+}
+
+/* Logo com texto em gradiente laranja→verde */
+.logo-grad {
+  background: linear-gradient(95deg, #e4571a 0%, #e00000 30%, #01791a 95%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+@keyframes fe-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.animate-fade-up {
+  animation: fe-fade-up 0.4s ease both;
 }
