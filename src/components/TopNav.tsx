@@ -17,7 +17,7 @@ export function TopNav() {
 
   return (
     <header className="sticky top-0 z-40 hidden border-b border-line bg-surface/90 backdrop-blur lg:block">
-      <div className="mx-auto flex h-16 w-full max-w-4xl items-center gap-6 px-6">
+      <div className="mx-auto flex h-16 w-full max-w-6xl items-center gap-6 px-10 2xl:max-w-[1600px]">
         <Link href="/" className="flex items-center">
           <span className="logo-grad text-2xl font-bold tracking-tight">
             Feiraê

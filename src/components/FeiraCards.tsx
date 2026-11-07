@@ -17,7 +17,7 @@ export function FeiraPhotoCard({
     <Link
       href={`/feira/${feira.id}`}
       className={cn(
-        "group relative block aspect-[5/4] overflow-hidden rounded-card shadow-card sm:aspect-[16/10] lg:aspect-[21/9]",
+        "group relative block aspect-[5/4] overflow-hidden rounded-card shadow-card sm:aspect-[16/10] lg:aspect-auto lg:h-[360px]",
         className,
       )}
     >
