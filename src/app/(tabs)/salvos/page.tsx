@@ -128,7 +128,7 @@ export default function SalvosPage() {
               <span className="font-normal text-faint">({itens.length})</span>
             </h2>
 
-            <div className="space-y-2 lg:grid lg:grid-cols-2 lg:gap-2 lg:space-y-0">
+            <div className="space-y-2">
               {itens.map((feira) => (
                 <div
                   key={feira.id}

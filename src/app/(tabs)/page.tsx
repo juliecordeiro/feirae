@@ -48,7 +48,7 @@ export default function InicioPage() {
         <p className="text-sm text-muted">
           Deslize → para salvar, ← para descartar. Toque duas vezes para curtir.
         </p>
-        <div className="mt-3 space-y-4 lg:grid lg:grid-cols-2 lg:gap-4 lg:space-y-0">
+        <div className="mt-3 space-y-4 lg:space-y-5">
           {FEIRAS.map((f) => (
             <FeiraPhotoCard key={f.id} feira={f} />
           ))}

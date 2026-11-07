@@ -2,8 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Compass, Home, Bookmark, User } from "lucide-react";
-import { LogoMark } from "./Logo";
+import { Compass, Home, Bookmark, User, Smartphone } from "lucide-react";
 import { cn } from "@/lib/cn";
 
 const ITENS = [
@@ -18,10 +17,9 @@ export function TopNav() {
 
   return (
     <header className="sticky top-0 z-40 hidden border-b border-line bg-surface/90 backdrop-blur lg:block">
-      <div className="mx-auto flex h-16 w-full max-w-5xl items-center gap-6 px-6">
-        <Link href="/" className="flex items-center gap-1.5">
-          <LogoMark size={28} className="text-brand" />
-          <span className="logo-grad text-xl font-bold tracking-tight">
+      <div className="mx-auto flex h-16 w-full max-w-4xl items-center gap-6 px-6">
+        <Link href="/" className="flex items-center">
+          <span className="logo-grad text-2xl font-bold tracking-tight">
             Feiraê
           </span>
         </Link>
@@ -48,6 +46,13 @@ export function TopNav() {
             );
           })}
         </nav>
+
+        <Smartphone
+          size={20}
+          strokeWidth={2}
+          className="ml-auto text-muted"
+          aria-hidden
+        />
       </div>
     </header>
   );

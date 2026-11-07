@@ -9,7 +9,7 @@ export default function TabsLayout({
   return (
     <div className="min-h-dvh">
       <TopNav />
-      <main className="mx-auto w-full max-w-md px-4 pb-28 pt-4 lg:max-w-5xl lg:px-8 lg:pb-16 lg:pt-8">
+      <main className="mx-auto w-full max-w-md px-4 pb-28 pt-4 lg:max-w-4xl lg:px-8 lg:pb-16 lg:pt-8">
         {children}
       </main>
       <BottomNav />
